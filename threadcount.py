@@ -50,5 +50,10 @@ for sublist in m_neslist:
         poslist.append(item)
 
 for p in poslist:
-    if p.node == 'PERSON':
-        print(p, "Person")
+    print("\t", p)
+    if type(p) == nltk.tree.Tree:
+        print(p, "TREE")
+    elif type(p) == tuple:
+        print(p, "TUPLE")
+    else:
+        print(p, "UNRECOGNIZED TYPE")
