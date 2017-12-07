@@ -16,6 +16,7 @@ nltk.download('words')
 tokenizer = SpaceTokenizer()
 stop = stopwords.words('english')
 
+
 # 4chan config
 board = basc_py4chan.Board('lit')
 
@@ -26,34 +27,15 @@ m_neslist = ['']
 n = 0
 
 for thread_id in thread_ids:
-    if board.thread_exists(thread_id) and n < 2:
+    if board.thread_exists(thread_id) and n < 4:
         thread = board.get_thread(thread_id)
         print("Thread:", thread.url)
         postlist = thread.all_posts
         for post in postlist: # post is a paragraph
 
-            toks = tokenizer.tokenize(post.text_comment)
-            try:
-                pos = pos_tag(toks)
-            except:
-                print("Error")
-                pass
-
-            chunked_nes = ne_chunk(pos)
-            m_neslist.append(chunked_nes)
-        n += 1
-
-poslist = ['']
-
-for sublist in m_neslist:
-    for item in sublist:
-        poslist.append(item)
-
-for p in poslist:
-    print("\t", p)
-    if type(p) == nltk.tree.Tree:
-        print(p, "TREE")
-    elif type(p) == tuple:
-        print(p, "TUPLE")
-    else:
-        print(p, "UNRECOGNIZED TYPE")
+            for par in nltk.sent_tokenize(post.text_comment):
+                tokens = nltk.tokenize.word_tokenize(par)
+                tags = nltk.pos_tag(tokens)
+                chunked_tag = ne_chunk(tags)
+                print(chunked_tag)
+        n+= 1
