@@ -11,7 +11,7 @@ Goals:
 
 Issues:
 - Misspelled/uncapatalized names
-- Normalization: what if someone posts a paragraph of 100 instances of the phrase "John Green"?
+- Normalization: what if someone posts a paragraph of 100 instances of the phrase "John Green"? Should we group "Stallman" and "Richard Stallman" under one key?
 
 # Installing
 1. Install some packages via your favorite package manager: `sudo apt install python3 python3-pip python3-tk`

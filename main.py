@@ -37,19 +37,17 @@ board = basc_py4chan.Board(board)
 
 thread_ids = board.get_all_thread_ids()
 
-m_wordlist = []
-m_neslist = []
 n = 0
 nnp_list= []
 name = ""
 namelist = []
 
-for thread_id in thread_ids:
+for thread_id in thread_ids: # For every thread
     if board.thread_exists(thread_id) and n < threadcount:
         thread = board.get_thread(thread_id)
-        #print("Thread:", thread.url)
         postlist = thread.all_posts
-        for post in postlist: # post is a paragraph
+        for post in postlist: # For every post in the thread
+            dupelist = [] # A list of all the things that will be added to the list.
 
             for par in nltk.sent_tokenize(post.text_comment):
                 tokens = nltk.tokenize.word_tokenize(par)
@@ -59,15 +57,18 @@ for thread_id in thread_ids:
                     name = ""
                     if type(c).__name__ == 'tuple':
                         if c[1] == "PERSON":
-                            nnp_list.append(c[0])
+                            dupelist.append(c[0])
                     elif type(c).__name__ == 'Tree':
                         if c.label() == "PERSON":
                             nnp_list.append(c)
                             for x in range(0, len(c)):
-                                #print("%s" % c[x][0], end=' ')
                                 name += c[x][0] + " "
-                            namelist.append(name.strip())
-                            print(namelist[-1])
+                            dupelist.append(name.strip())
+                            print(dupelist[-1])
+			
+            dupeset = set(dupelist)
+            dupelist = list(dupeset)
+            namelist.extend(dupelist)	
         n = n+1
 
 c = Counter(namelist)
