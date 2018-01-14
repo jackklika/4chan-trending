@@ -10,6 +10,15 @@ from nltk import pos_tag, ne_chunk
 import numpy as np
 import matplotlib.pyplot as plt
 
+#################################
+# CHANGE SOME OF THESE VARIABLES!
+board = 'g'
+threadcount = 1000 # Amount of threads to get. Set to "1000" or something for all threads
+
+# Graph Variables
+title = "/{}/ name frequency {}".format(board, time.time())
+ylabel = "Proper Noun Count"
+################################
 
 # Download needed files
 nltk.download('punkt')
@@ -18,19 +27,9 @@ nltk.download('averaged_perceptron_tagger')
 nltk.download('maxent_ne_chunker')
 nltk.download('words')
 
-
 # nltk config
 tokenizer = SpaceTokenizer()
 stop = stopwords.words('english')
-
-# Some running vars
-board = 'g'
-threadcount = 1000 # Amount of threads to get. Set to "1000" or something for all threads
-
-# Set some graph varsk
-title = "/{}/ name frequency {}".format(board, time.time())
-ylabel = "Person Frequency"
-
 
 # 4chan config
 board = basc_py4chan.Board(board)
@@ -87,5 +86,3 @@ plt.xticks(indexes, labels, rotation=90)
 
 plt.savefig('{}.png'.format(int(time.time())))
 plt.show()
-
-
