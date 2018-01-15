@@ -76,5 +76,5 @@ c = Counter(namelist)
 
 scorefile = open("{}{}-{}.csv".format(recordsdir, txtboard, timestamp),"w")
 
-for cc in c.most_common(100):
+for cc in c.most_common(20):
     scorefile.write("{},{},{}\n".format(cc[0], cc[1], timestamp))
