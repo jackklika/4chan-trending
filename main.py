@@ -14,11 +14,12 @@ import numpy as np
 board = 'g'
 recordsdir = '/opt/4chan-records/'
 threadcount = 1000 # Amount of threads to get. Set to "1000" or something for all threads, 10 for testing.
-
-# Graph Variables
-title = "/{}/ name frequency {}".format(board, time.time())
-ylabel = "Proper Noun Count"
 ################################
+
+timestamp = time.time()
+# Graph Variables
+title = "/{}/ name frequency {}".format(board, timestamp)
+ylabel = "Proper Noun Count"
 
 # Download needed files
 nltk.download('punkt')
@@ -73,7 +74,7 @@ for thread_id in thread_ids: # For every thread
 
 c = Counter(namelist)
 
-scorefile = open("{}{}-{}.csv".format(recordsdir, txtboard, time.time()),"w")
+scorefile = open("{}{}-{}.csv".format(recordsdir, txtboard, timestamp),"w")
 
 for cc in c.most_common(100):
-    scorefile.write("{},{},{}\n".format(cc[0], cc[1], time.time()))
+    scorefile.write("{},{},{}\n".format(cc[0], cc[1], timestamp))
