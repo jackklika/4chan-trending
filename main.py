@@ -13,7 +13,8 @@ import matplotlib.pyplot as plt
 #################################
 # CHANGE SOME OF THESE VARIABLES!
 board = 'g'
-threadcount = 1000 # Amount of threads to get. Set to "1000" or something for all threads, 10 for testing.
+recordsdir = '/opt/4chan-records/'
+threadcount = 4 # Amount of threads to get. Set to "1000" or something for all threads, 10 for testing.
 
 # Graph Variables
 title = "/{}/ name frequency {}".format(board, time.time())
@@ -73,21 +74,7 @@ for thread_id in thread_ids: # For every thread
 
 c = Counter(namelist)
 
-scorefile = open("records/{}-{}.csv".format(txtboard, time.time()),"w")
+scorefile = open("{}{}-{}.csv".format(recordsdir, txtboard, time.time()),"w")
 
 for cc in c.most_common(200):
     scorefile.write("{},{}\n".format(cc[0],cc[1]))
-cordered = OrderedDict(c.most_common(30))
-labels, values = zip(*cordered.items())
-
-indexes = np.arange(len(labels))
-width = 1
-
-# For the graph. Currently disabled.
-plt.title(title)
-plt.ylabel(ylabel)
-plt.bar(indexes, values, width, color=["#d6daf0", "#d0d0f0"])
-plt.xticks(indexes, labels, rotation=90)
-
-#plt.savefig('{}.png'.format(int(time.time())))
-#plt.show()
