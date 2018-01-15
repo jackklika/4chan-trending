@@ -8,13 +8,12 @@ from nltk.tag import pos_tag
 from nltk.tokenize import SpaceTokenizer
 from nltk import pos_tag, ne_chunk
 import numpy as np
-import matplotlib.pyplot as plt
 
 #################################
 # CHANGE SOME OF THESE VARIABLES!
 board = 'g'
 recordsdir = '/opt/4chan-records/'
-threadcount = 4 # Amount of threads to get. Set to "1000" or something for all threads, 10 for testing.
+threadcount = 1000 # Amount of threads to get. Set to "1000" or something for all threads, 10 for testing.
 
 # Graph Variables
 title = "/{}/ name frequency {}".format(board, time.time())
