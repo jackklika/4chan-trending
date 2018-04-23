@@ -2,6 +2,8 @@ This somewhat works.
 
 This is bad code.
 
+This is now maintained on a private gitlab repo since there's some hardcoded database stuff I'm too lazy to take out. If you're actually interested in the code, find a way to contact me and I'll send you a censored copy.
+
 I'm trying to identify the trends of authors based on /lit/ posts.
 
 Goals:
